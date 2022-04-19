@@ -9,7 +9,7 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, {
         'Content-Type': 'text/plain; charset=utf-8'
     });
-    // res.write ブラウザ名などを書き出す
+    // res.write アクセス者のブラウザ名などの情報（ユーザーエージェント）を書き出す
     res.write(req.headers['user-agent']);
     // レスポンス書き出しを終了、レスポンスオブジェクトへの接続を切断
     res.end();
@@ -17,7 +17,9 @@ const server = http.createServer((req, res) => {
 
 // HTTPを起動させるポートの指定 8000
 const port = 8000;
-// サーバーが立った後はポートからのリクエストを常に待つ　トリガー
+// サーバーを起動させる = listen(常にリクエストに対し待機しているから　リスナーになる)
+// 正常に起動したら　Listening on 8000 がitermに返る
+// Chrome で自マシンの8000ポートにアクセスするとwriteしたレスポンスが返る
 server.listen(port, () => {
     console.log(`Listening on ${port}`);
 });
